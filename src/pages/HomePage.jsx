@@ -72,21 +72,8 @@ export default function HomePage() {
             <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
 
                 {/* ==================== HERO SECTION ==================== */}
-                <section
-                    style={{
-                        position: 'relative',
-                        height: '80vh',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-end',
-                        paddingRight: '150px',
-                        overflow: 'hidden',
-                        maxWidth: '2560px',
-                        margin: '0 auto',
-                        transform: `translateY(${scrollY * 0.15}px)`,
-                    }}
-                >
-                    {/* Hero background image placeholder (left side) */}
+                <section className="hero-section">
+                    {/* Hero background */}
                     <div
                         style={{
                             position: 'absolute',
@@ -102,47 +89,13 @@ export default function HomePage() {
                         }}
                     />
                     {/* Large decorative element on the left */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            top: '50%',
-                            left: '8%',
-                            transform: 'translateY(-50%)',
-                            width: '380px',
-                            height: '380px',
-                            borderRadius: '30px',
-                            background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%)',
-                            boxShadow: '0 25px 60px rgba(0, 0, 0, 0.3)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '120px',
-                            zIndex: 2,
-                        }}
-                    >
+                    <div className="hero-decorative">
                         ⚡
                     </div>
 
-                    {/* Hero Content (right side) */}
-                    <div
-                        className="animate-fade-in-up"
-                        style={{
-                            position: 'relative',
-                            zIndex: 10,
-                            textAlign: 'center',
-                            maxWidth: '550px',
-                            marginRight: '80px',
-                        }}
-                    >
-                        <h1
-                            style={{
-                                fontSize: '52px',
-                                fontWeight: 700,
-                                color: 'var(--color-text-primary)',
-                                marginBottom: '50px',
-                                lineHeight: 1.2,
-                            }}
-                        >
+                    {/* Hero Content */}
+                    <div className="hero-content animate-fade-in-up">
+                        <h1 className="hero-title">
                             Si buscas el mejor producto o servicio,{' '}
                             <span className="text-gradient">nosotros somos los mejores</span>
                         </h1>
@@ -153,72 +106,25 @@ export default function HomePage() {
                 </section>
 
                 {/* ==================== CONTENT SECTION ==================== */}
-                <section
-                    style={{
-                        display: 'flex',
-                        gap: '80px',
-                        padding: '120px 120px 90px',
-                        alignItems: 'flex-start',
-                        maxWidth: '2560px',
-                        margin: '0 auto',
-                    }}
-                >
+                <section className="content-section">
                     {/* Image Container */}
-                    <div
-                        style={{
-                            flex: '0 0 500px',
-                            height: '320px',
-                            borderRadius: '24px',
-                            overflow: 'hidden',
-                            boxShadow: '0 12px 35px rgba(0, 0, 0, 0.3)',
-                            background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, rgba(139, 92, 246, 0.2) 100%)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '64px',
-                        }}
-                    >
+                    <div className="content-image">
                         🏢
                     </div>
 
                     {/* Text Content */}
-                    <div style={{ flex: 1, paddingTop: '15px' }}>
-                        <h2
-                            style={{
-                                fontSize: '34px',
-                                fontWeight: 700,
-                                color: 'var(--color-text-primary)',
-                                marginBottom: '35px',
-                                lineHeight: 1.3,
-                            }}
-                        >
+                    <div className="content-text">
+                        <h2 className="content-title">
                             ¡Nuestros Servicios Pueden Ser{' '}
                             <span className="text-gradient">Tuyos!</span>
                         </h2>
-                        <p
-                            style={{
-                                fontSize: '18px',
-                                lineHeight: 1.9,
-                                color: 'var(--color-text-secondary)',
-                                marginBottom: '28px',
-                                textAlign: 'justify',
-                                fontWeight: 400,
-                            }}
-                        >
+                        <p className="content-paragraph">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                             aliquip ex ea commodo consequat.
                         </p>
-                        <p
-                            style={{
-                                fontSize: '18px',
-                                lineHeight: 1.9,
-                                color: 'var(--color-text-secondary)',
-                                fontWeight: 400,
-                                textAlign: 'justify',
-                            }}
-                        >
+                        <p className="content-paragraph">
                             Duis aute irure dolor in reprehenderit in voluptate velit esse
                             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
                             cupidatat non proident, sunt in culpa qui officia deserunt mollit
@@ -228,21 +134,11 @@ export default function HomePage() {
                 </section>
 
                 {/* ==================== ACTION BUTTONS ==================== */}
-                <section
-                    style={{
-                        display: 'flex',
-                        gap: '28px',
-                        padding: '0 120px 70px',
-                        flexWrap: 'wrap',
-                        maxWidth: '2560px',
-                        margin: '0 auto',
-                    }}
-                >
+                <section className="action-buttons-section">
                     {['UBICACIÓN', 'DETALLES', 'MÁS INFO', 'CONTACTO'].map((label) => (
                         <button
                             key={label}
-                            className="pill-btn"
-                            style={{ minWidth: '190px' }}
+                            className="pill-btn action-btn"
                             onClick={() => { }}
                         >
                             {label}
@@ -251,13 +147,7 @@ export default function HomePage() {
                 </section>
 
                 {/* ==================== CAROUSEL SECTION ==================== */}
-                <section
-                    style={{
-                        padding: '70px 120px 60px',
-                        maxWidth: '2560px',
-                        margin: '0 auto',
-                    }}
-                >
+                <section className="carousel-section">
                     <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative' }}>
                         <div className="carousel-wrapper">
                             <button className="carousel-btn prev" onClick={prevSlide}>
@@ -302,80 +192,31 @@ export default function HomePage() {
                 </section>
 
                 {/* ==================== GALLERY CTA ==================== */}
-                <section
-                    style={{
-                        textAlign: 'center',
-                        padding: '100px 120px 90px',
-                        maxWidth: '2560px',
-                        margin: '0 auto',
-                    }}
-                >
+                <section className="gallery-cta-section">
                     <button
                         onClick={() => navigate('/galeria')}
-                        className="pill-btn"
-                        style={{ padding: '20px 55px', fontSize: '20px' }}
+                        className="pill-btn gallery-cta-btn"
                     >
                         Galería
                     </button>
                 </section>
 
                 {/* ==================== QUOTATION FORM ==================== */}
-                <section
-                    id="cotizar"
-                    style={{
-                        padding: '80px 120px',
-                        maxWidth: '2560px',
-                        margin: '0 auto',
-                    }}
-                >
+                <section id="cotizar" className="form-section">
                     <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-                            <h2
-                                style={{
-                                    fontSize: '36px',
-                                    fontWeight: 700,
-                                    marginBottom: '20px',
-                                }}
-                            >
+                            <h2 className="form-title">
                                 Cotiza <span className="text-gradient">Ahora</span>
                             </h2>
-                            <p
-                                style={{
-                                    fontSize: '16px',
-                                    color: 'var(--color-text-muted)',
-                                    maxWidth: '600px',
-                                    margin: '0 auto',
-                                }}
-                            >
+                            <p className="form-subtitle">
                                 Completa el formulario para recibir tu cotización personalizada.
                                 Todos tus datos son confidenciales.
                             </p>
                         </div>
 
                         {submitted ? (
-                            <div
-                                style={{
-                                    backgroundColor: 'var(--color-dark-card)',
-                                    borderRadius: '20px',
-                                    padding: '60px 40px',
-                                    textAlign: 'center',
-                                    boxShadow: '0 15px 40px rgba(0, 0, 0, 0.3)',
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        width: '80px',
-                                        height: '80px',
-                                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%)',
-                                        borderRadius: '50%',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        margin: '0 auto 30px',
-                                        fontSize: '40px',
-                                        color: 'white',
-                                    }}
-                                >
+                            <div className="form-success">
+                                <div className="form-success-icon">
                                     ✓
                                 </div>
                                 <h3 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '15px' }}>
@@ -386,35 +227,12 @@ export default function HomePage() {
                                 </p>
                             </div>
                         ) : (
-                            <form
-                                onSubmit={handleSubmit}
-                                style={{
-                                    backgroundColor: 'var(--color-dark-card)',
-                                    borderRadius: '20px',
-                                    padding: '40px',
-                                    boxShadow: '0 15px 40px rgba(0, 0, 0, 0.3)',
-                                }}
-                            >
-                                <h3
-                                    style={{
-                                        fontSize: '20px',
-                                        fontWeight: 700,
-                                        marginBottom: '25px',
-                                        borderBottom: '3px solid var(--color-accent)',
-                                        paddingBottom: '10px',
-                                    }}
-                                >
+                            <form onSubmit={handleSubmit} className="form-card">
+                                <h3 className="form-card-title">
                                     Información de Contacto
                                 </h3>
 
-                                <div
-                                    style={{
-                                        display: 'grid',
-                                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                                        gap: '20px',
-                                        marginBottom: '24px',
-                                    }}
-                                >
+                                <div className="form-grid">
                                     <div>
                                         <label className="form-label">Nombre Completo *</label>
                                         <input
@@ -488,19 +306,7 @@ export default function HomePage() {
                                         onClick={() =>
                                             setFormData({ nombre: '', correo: '', telefono: '', servicio: '', presupuesto: '' })
                                         }
-                                        style={{
-                                            background: 'var(--color-dark-border)',
-                                            color: 'var(--color-text-secondary)',
-                                            padding: '16px 36px',
-                                            border: 'none',
-                                            borderRadius: '28px',
-                                            fontSize: '15px',
-                                            fontWeight: 600,
-                                            cursor: 'pointer',
-                                            transition: 'all 0.3s ease',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '1px',
-                                        }}
+                                        className="pill-btn-secondary"
                                     >
                                         LIMPIAR
                                     </button>
@@ -515,26 +321,7 @@ export default function HomePage() {
             {scrollY > 300 && (
                 <button
                     onClick={scrollToTop}
-                    style={{
-                        position: 'fixed',
-                        bottom: '25px',
-                        right: '25px',
-                        zIndex: 1000,
-                        width: '50px',
-                        height: '50px',
-                        borderRadius: '50%',
-                        border: 'none',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%)',
-                        color: '#fff',
-                        fontSize: '24px',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: '0 4px 15px rgba(37, 99, 235, 0.4)',
-                        transition: 'transform 0.3s ease',
-                    }}
+                    className="scroll-top-btn"
                     onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
                     onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                 >
@@ -544,14 +331,359 @@ export default function HomePage() {
 
             {/* Responsive styles */}
             <style>{`
+                .hero-section {
+                    position: relative;
+                    height: 80vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    padding-right: 150px;
+                    overflow: hidden;
+                    max-width: 2560px;
+                    margin: 0 auto;
+                    transform: translateY(${scrollY * 0.15}px);
+                }
+                .hero-decorative {
+                    position: absolute;
+                    top: 50%;
+                    left: 8%;
+                    transform: translateY(-50%);
+                    width: 380px;
+                    height: 380px;
+                    border-radius: 30px;
+                    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%);
+                    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 120px;
+                    z-index: 2;
+                }
+                .hero-content {
+                    position: relative;
+                    z-index: 10;
+                    text-align: center;
+                    max-width: 550px;
+                    margin-right: 80px;
+                }
+                .hero-title {
+                    font-size: 52px;
+                    font-weight: 700;
+                    color: var(--color-text-primary);
+                    margin-bottom: 50px;
+                    line-height: 1.2;
+                }
+                .content-section {
+                    display: flex;
+                    gap: 80px;
+                    padding: 120px 120px 90px;
+                    align-items: flex-start;
+                    max-width: 2560px;
+                    margin: 0 auto;
+                }
+                .content-image {
+                    flex: 0 0 500px;
+                    height: 320px;
+                    border-radius: 24px;
+                    overflow: hidden;
+                    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+                    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, rgba(139, 92, 246, 0.2) 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 64px;
+                }
+                .content-text {
+                    flex: 1;
+                    padding-top: 15px;
+                }
+                .content-title {
+                    font-size: 34px;
+                    font-weight: 700;
+                    color: var(--color-text-primary);
+                    margin-bottom: 35px;
+                    line-height: 1.3;
+                }
+                .content-paragraph {
+                    font-size: 18px;
+                    line-height: 1.9;
+                    color: var(--color-text-secondary);
+                    margin-bottom: 28px;
+                    text-align: justify;
+                    font-weight: 400;
+                }
+                .content-paragraph:last-child {
+                    margin-bottom: 0;
+                }
+                .action-buttons-section {
+                    display: flex;
+                    gap: 28px;
+                    padding: 0 120px 70px;
+                    flex-wrap: wrap;
+                    max-width: 2560px;
+                    margin: 0 auto;
+                }
+                .action-btn {
+                    min-width: 190px;
+                }
+                .carousel-section {
+                    padding: 70px 120px 60px;
+                    max-width: 2560px;
+                    margin: 0 auto;
+                }
+                .gallery-cta-section {
+                    text-align: center;
+                    padding: 100px 120px 90px;
+                    max-width: 2560px;
+                    margin: 0 auto;
+                }
+                .gallery-cta-btn {
+                    padding: 20px 55px !important;
+                    font-size: 20px !important;
+                }
+                .form-section {
+                    padding: 80px 120px;
+                    max-width: 2560px;
+                    margin: 0 auto;
+                }
+                .form-title {
+                    font-size: 36px;
+                    font-weight: 700;
+                    margin-bottom: 20px;
+                }
+                .form-subtitle {
+                    font-size: 16px;
+                    color: var(--color-text-muted);
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+                .form-success {
+                    background-color: var(--color-dark-card);
+                    border-radius: 20px;
+                    padding: 60px 40px;
+                    text-align: center;
+                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+                }
+                .form-success-icon {
+                    width: 80px;
+                    height: 80px;
+                    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto 30px;
+                    font-size: 40px;
+                    color: white;
+                }
+                .form-card {
+                    background-color: var(--color-dark-card);
+                    border-radius: 20px;
+                    padding: 40px;
+                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+                }
+                .form-card-title {
+                    font-size: 20px;
+                    font-weight: 700;
+                    margin-bottom: 25px;
+                    border-bottom: 3px solid var(--color-accent);
+                    padding-bottom: 10px;
+                }
+                .form-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                    gap: 20px;
+                    margin-bottom: 24px;
+                }
+                .pill-btn-secondary {
+                    background: var(--color-dark-border);
+                    color: var(--color-text-secondary);
+                    padding: 16px 36px;
+                    border: none;
+                    border-radius: 28px;
+                    font-size: 15px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    font-family: var(--font-body);
+                }
+                .pill-btn-secondary:hover {
+                    background: var(--color-dark-card-hover);
+                }
+                .scroll-top-btn {
+                    position: fixed;
+                    bottom: 25px;
+                    right: 25px;
+                    z-index: 1000;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    border: none;
+                    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+                    color: #fff;
+                    font-size: 24px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+                    transition: transform 0.3s ease;
+                }
+
+                /* ===== TABLET ===== */
                 @media (max-width: 1366px) {
-                    section { padding-left: 80px !important; padding-right: 80px !important; }
+                    .hero-section { padding-right: 80px; }
+                    .hero-content { margin-right: 40px; }
+                    .hero-decorative { width: 300px; height: 300px; font-size: 90px; }
+                    .content-section { padding: 80px 80px 60px; gap: 50px; }
+                    .content-image { flex: 0 0 400px; height: 280px; }
+                    .action-buttons-section { padding: 0 80px 50px; }
+                    .carousel-section { padding: 50px 80px 50px; }
+                    .gallery-cta-section { padding: 70px 80px 60px; }
+                    .form-section { padding: 60px 80px; }
                 }
+
                 @media (max-width: 1024px) {
-                    section { padding-left: 50px !important; padding-right: 50px !important; }
+                    .hero-section {
+                        height: 70vh;
+                        justify-content: center;
+                        padding-right: 50px;
+                        padding-left: 50px;
+                    }
+                    .hero-decorative {
+                        width: 220px;
+                        height: 220px;
+                        font-size: 70px;
+                        left: 5%;
+                    }
+                    .hero-content { margin-right: 0; max-width: 450px; }
+                    .hero-title { font-size: 40px; margin-bottom: 35px; }
+                    .content-section {
+                        flex-direction: column;
+                        padding: 60px 50px;
+                        gap: 40px;
+                    }
+                    .content-image {
+                        flex: none;
+                        width: 100%;
+                        height: 280px;
+                    }
+                    .content-title { font-size: 28px; margin-bottom: 25px; }
+                    .content-paragraph { font-size: 16px; }
+                    .action-buttons-section {
+                        padding: 0 50px 40px;
+                        gap: 16px;
+                        justify-content: center;
+                    }
+                    .action-btn { min-width: 160px; }
+                    .carousel-section { padding: 40px 50px 40px; }
+                    .gallery-cta-section { padding: 50px 50px 50px; }
+                    .form-section { padding: 50px 50px; }
+                    .form-title { font-size: 30px; }
                 }
+
+                /* ===== MOBILE ===== */
                 @media (max-width: 768px) {
-                    section { padding-left: 25px !important; padding-right: 25px !important; }
+                    .hero-section {
+                        height: auto;
+                        min-height: 65vh;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: 80px 25px 50px;
+                    }
+                    .hero-decorative {
+                        display: none;
+                    }
+                    .hero-content {
+                        max-width: 100%;
+                        margin-right: 0;
+                    }
+                    .hero-title {
+                        font-size: 30px;
+                        margin-bottom: 30px;
+                    }
+                    .content-section {
+                        flex-direction: column;
+                        padding: 40px 25px;
+                        gap: 30px;
+                    }
+                    .content-image {
+                        height: 220px;
+                        font-size: 48px;
+                    }
+                    .content-title {
+                        font-size: 24px;
+                        margin-bottom: 20px;
+                    }
+                    .content-paragraph {
+                        font-size: 15px;
+                        line-height: 1.8;
+                        text-align: left;
+                    }
+                    .action-buttons-section {
+                        padding: 0 25px 30px;
+                        gap: 12px;
+                        justify-content: center;
+                    }
+                    .action-btn {
+                        min-width: calc(50% - 8px);
+                        flex: 1 1 calc(50% - 8px);
+                    }
+                    .carousel-section { padding: 30px 25px 30px; }
+                    .gallery-cta-section { padding: 40px 25px 40px; }
+                    .gallery-cta-btn {
+                        padding: 16px 40px !important;
+                        font-size: 16px !important;
+                    }
+                    .form-section { padding: 40px 25px; }
+                    .form-card {
+                        padding: 25px 20px;
+                        border-radius: 16px;
+                    }
+                    .form-title { font-size: 26px; }
+                    .form-subtitle { font-size: 14px; }
+                    .form-grid {
+                        grid-template-columns: 1fr;
+                    }
+                    .form-card-title { font-size: 18px; }
+                    .pill-btn-secondary {
+                        padding: 13px 26px;
+                        font-size: 13px;
+                    }
+                    .scroll-top-btn {
+                        width: 44px;
+                        height: 44px;
+                        bottom: 18px;
+                        right: 18px;
+                        font-size: 20px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .hero-section {
+                        min-height: 55vh;
+                        padding: 70px 20px 40px;
+                    }
+                    .hero-title {
+                        font-size: 25px;
+                        margin-bottom: 25px;
+                    }
+                    .content-section { padding: 30px 20px; }
+                    .content-image { height: 180px; font-size: 40px; border-radius: 18px; }
+                    .content-title { font-size: 22px; }
+                    .content-paragraph { font-size: 14px; }
+                    .action-buttons-section { padding: 0 20px 25px; gap: 10px; }
+                    .action-btn {
+                        min-width: calc(50% - 6px);
+                    }
+                    .carousel-section { padding: 25px 20px 25px; }
+                    .gallery-cta-section { padding: 30px 20px 30px; }
+                    .form-section { padding: 30px 20px; }
+                    .form-card { padding: 20px 16px; }
+                    .form-title { font-size: 22px; }
                 }
             `}</style>
         </div>

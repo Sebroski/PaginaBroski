@@ -73,55 +73,24 @@ export default function GalleryPage() {
 
             <div style={{ position: 'relative', zIndex: 2 }}>
                 {/* Header */}
-                <section style={{ padding: '60px 120px 30px', textAlign: 'center' }}>
-                    <h1
-                        className="animate-fade-in-up"
-                        style={{ fontSize: '36px', fontWeight: 700, marginBottom: '20px' }}
-                    >
+                <section className="gallery-header">
+                    <h1 className="animate-fade-in-up gallery-title">
                         Galería de <span className="text-gradient">Proyectos</span>
                     </h1>
-                    <p
-                        style={{
-                            fontSize: '16px',
-                            color: 'var(--color-text-muted)',
-                            maxWidth: '600px',
-                            margin: '0 auto',
-                        }}
-                    >
+                    <p className="gallery-subtitle">
                         Explora nuestros proyectos realizados. Navega por las diferentes
                         categorías para ver todos los detalles.
                     </p>
                 </section>
 
                 {/* Category Filters */}
-                <section style={{ padding: '0 120px 40px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '15px' }}>
+                <section className="gallery-filters-section">
+                    <div className="gallery-filters">
                         {categories.map((cat) => (
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
-                                style={{
-                                    backgroundColor: activeCategory === cat.id
-                                        ? 'var(--color-accent)' : 'var(--color-dark-card)',
-                                    color: activeCategory === cat.id ? '#fff' : 'var(--color-text-secondary)',
-                                    border: 'none',
-                                    padding: '12px 20px',
-                                    borderRadius: '25px',
-                                    fontSize: '14px',
-                                    fontWeight: 600,
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.5px',
-                                }}
-                                onMouseEnter={(e) => {
-                                    if (activeCategory !== cat.id)
-                                        e.target.style.backgroundColor = 'var(--color-dark-card-hover)'
-                                }}
-                                onMouseLeave={(e) => {
-                                    if (activeCategory !== cat.id)
-                                        e.target.style.backgroundColor = 'var(--color-dark-card)'
-                                }}
+                                className={`gallery-filter-btn ${activeCategory === cat.id ? 'active' : ''}`}
                             >
                                 {cat.name} ({getCategoryCount(cat.id)})
                             </button>
@@ -130,7 +99,7 @@ export default function GalleryPage() {
                 </section>
 
                 {/* Gallery Grid */}
-                <section style={{ padding: '0 120px 80px' }}>
+                <section className="gallery-grid-section">
                     <div className="gallery-grid">
                         {filtered.map((item) => (
                             <div
@@ -193,7 +162,7 @@ export default function GalleryPage() {
                 </section>
 
                 {/* Back to Home CTA */}
-                <section style={{ textAlign: 'center', padding: '0 120px 60px' }}>
+                <section className="gallery-back-section">
                     <button
                         onClick={() => navigate('/')}
                         className="pill-btn"
@@ -206,88 +175,30 @@ export default function GalleryPage() {
             {/* MODAL */}
             {modalItem && (
                 <div className="modal-overlay" onClick={closeModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-content gallery-modal" onClick={(e) => e.stopPropagation()}>
                         {/* Close */}
-                        <button
-                            onClick={closeModal}
-                            style={{
-                                position: 'absolute',
-                                top: '-50px',
-                                right: '0',
-                                background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%)',
-                                color: '#fff',
-                                border: 'none',
-                                width: '45px',
-                                height: '45px',
-                                borderRadius: '50%',
-                                fontSize: '26px',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s ease',
-                            }}
-                        >
+                        <button onClick={closeModal} className="modal-close-btn">
                             ×
                         </button>
                         {/* Prev */}
-                        <button
-                            onClick={prevImage}
-                            style={{
-                                position: 'absolute',
-                                left: '-60px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                backgroundColor: 'rgba(37, 99, 235, 0.7)',
-                                color: '#fff',
-                                border: 'none',
-                                width: '50px',
-                                height: '50px',
-                                borderRadius: '50%',
-                                fontSize: '24px',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s ease',
-                            }}
-                        >
+                        <button onClick={prevImage} className="modal-nav-btn modal-prev-btn">
                             ‹
                         </button>
                         {/* Next */}
-                        <button
-                            onClick={nextImage}
-                            style={{
-                                position: 'absolute',
-                                right: '-60px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                backgroundColor: 'rgba(37, 99, 235, 0.7)',
-                                color: '#fff',
-                                border: 'none',
-                                width: '50px',
-                                height: '50px',
-                                borderRadius: '50%',
-                                fontSize: '24px',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s ease',
-                            }}
-                        >
+                        <button onClick={nextImage} className="modal-nav-btn modal-next-btn">
                             ›
                         </button>
                         {/* Image */}
                         <div
+                            className="modal-image"
                             style={{
-                                width: '70vw',
-                                maxWidth: '800px',
-                                height: '60vh',
                                 background: gradientMap[modalItem.category],
-                                borderRadius: '12px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: '80px',
-                                color: 'rgba(255,255,255,0.3)',
                             }}
                         >
                             📷
                         </div>
                         {/* Caption */}
-                        <div style={{ position: 'absolute', bottom: '-60px', left: 0, right: 0, textAlign: 'center', color: '#fff' }}>
+                        <div className="modal-caption">
                             <h3 style={{ fontSize: '18px', fontWeight: 700, margin: '0 0 5px 0' }}>
                                 {modalItem.title}
                             </h3>
@@ -301,14 +212,208 @@ export default function GalleryPage() {
 
             {/* Responsive */}
             <style>{`
+                .gallery-header {
+                    padding: 60px 120px 30px;
+                    text-align: center;
+                }
+                .gallery-title {
+                    font-size: 36px;
+                    font-weight: 700;
+                    margin-bottom: 20px;
+                }
+                .gallery-subtitle {
+                    font-size: 16px;
+                    color: var(--color-text-muted);
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+                .gallery-filters-section {
+                    padding: 0 120px 40px;
+                }
+                .gallery-filters {
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: 15px;
+                }
+                .gallery-filter-btn {
+                    background-color: var(--color-dark-card);
+                    color: var(--color-text-secondary);
+                    border: none;
+                    padding: 12px 20px;
+                    border-radius: 25px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    font-family: var(--font-body);
+                }
+                .gallery-filter-btn:hover {
+                    background-color: var(--color-dark-card-hover);
+                }
+                .gallery-filter-btn.active {
+                    background-color: var(--color-accent);
+                    color: #fff;
+                }
+                .gallery-filter-btn.active:hover {
+                    background-color: var(--color-accent);
+                }
+                .gallery-grid-section {
+                    padding: 0 120px 80px;
+                }
+                .gallery-back-section {
+                    text-align: center;
+                    padding: 0 120px 60px;
+                }
+
+                /* Modal */
+                .gallery-modal {
+                    position: relative;
+                }
+                .modal-close-btn {
+                    position: absolute;
+                    top: -50px;
+                    right: 0;
+                    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+                    color: #fff;
+                    border: none;
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    font-size: 26px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    z-index: 10;
+                }
+                .modal-nav-btn {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background-color: rgba(37, 99, 235, 0.7);
+                    color: #fff;
+                    border: none;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    font-size: 24px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    z-index: 10;
+                }
+                .modal-nav-btn:hover {
+                    background-color: rgba(37, 99, 235, 0.95);
+                }
+                .modal-prev-btn {
+                    left: -60px;
+                }
+                .modal-next-btn {
+                    right: -60px;
+                }
+                .modal-image {
+                    width: 70vw;
+                    max-width: 800px;
+                    height: 60vh;
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 80px;
+                    color: rgba(255,255,255,0.3);
+                }
+                .modal-caption {
+                    position: absolute;
+                    bottom: -60px;
+                    left: 0;
+                    right: 0;
+                    text-align: center;
+                    color: #fff;
+                }
+
+                /* ===== TABLET ===== */
                 @media (max-width: 1366px) {
-                    section { padding-left: 80px !important; padding-right: 80px !important; }
+                    .gallery-header { padding: 50px 80px 25px; }
+                    .gallery-filters-section { padding: 0 80px 30px; }
+                    .gallery-grid-section { padding: 0 80px 60px; }
+                    .gallery-back-section { padding: 0 80px 50px; }
                 }
+
                 @media (max-width: 1024px) {
-                    section { padding-left: 50px !important; padding-right: 50px !important; }
+                    .gallery-header { padding: 40px 50px 20px; }
+                    .gallery-title { font-size: 30px; }
+                    .gallery-filters-section { padding: 0 50px 25px; }
+                    .gallery-grid-section { padding: 0 50px 50px; }
+                    .gallery-back-section { padding: 0 50px 40px; }
+                    .modal-prev-btn { left: -55px; }
+                    .modal-next-btn { right: -55px; }
                 }
+
+                /* ===== MOBILE ===== */
                 @media (max-width: 768px) {
-                    section { padding-left: 25px !important; padding-right: 25px !important; }
+                    .gallery-header { padding: 30px 25px 15px; }
+                    .gallery-title { font-size: 26px; }
+                    .gallery-subtitle { font-size: 14px; }
+                    .gallery-filters-section { padding: 0 25px 20px; }
+                    .gallery-filters { gap: 8px; }
+                    .gallery-filter-btn {
+                        padding: 10px 16px;
+                        font-size: 12px;
+                    }
+                    .gallery-grid-section { padding: 0 25px 40px; }
+                    .gallery-back-section { padding: 0 25px 40px; }
+
+                    /* Modal mobile */
+                    .modal-close-btn {
+                        top: -45px;
+                        right: 5px;
+                        width: 38px;
+                        height: 38px;
+                        font-size: 22px;
+                    }
+                    .modal-nav-btn {
+                        width: 40px;
+                        height: 40px;
+                        font-size: 20px;
+                    }
+                    .modal-prev-btn {
+                        left: 8px;
+                        top: 50%;
+                    }
+                    .modal-next-btn {
+                        right: 8px;
+                        top: 50%;
+                    }
+                    .modal-image {
+                        width: 90vw;
+                        height: 50vh;
+                        font-size: 50px;
+                        border-radius: 10px;
+                    }
+                    .modal-caption {
+                        bottom: -50px;
+                    }
+                    .modal-caption h3 { font-size: 15px !important; }
+                    .modal-caption p { font-size: 12px !important; }
+                }
+
+                @media (max-width: 480px) {
+                    .gallery-header { padding: 25px 20px 12px; }
+                    .gallery-title { font-size: 22px; }
+                    .gallery-filters-section { padding: 0 20px 15px; }
+                    .gallery-filter-btn { padding: 8px 12px; font-size: 11px; }
+                    .gallery-grid-section { padding: 0 20px 30px; }
+                    .gallery-back-section { padding: 0 20px 30px; }
+                    .modal-image {
+                        width: 92vw;
+                        height: 40vh;
+                        font-size: 40px;
+                    }
+                    .modal-nav-btn {
+                        width: 34px;
+                        height: 34px;
+                        font-size: 18px;
+                    }
                 }
             `}</style>
         </div>

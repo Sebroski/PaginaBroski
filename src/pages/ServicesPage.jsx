@@ -62,49 +62,24 @@ export default function ServicesPage() {
 
             <div style={{ position: 'relative', zIndex: 2 }}>
                 {/* Header */}
-                <section style={{ padding: '60px 120px 30px', textAlign: 'center' }}>
-                    <h1
-                        className="animate-fade-in-up"
-                        style={{ fontSize: '36px', fontWeight: 700, marginBottom: '20px' }}
-                    >
+                <section className="services-header">
+                    <h1 className="animate-fade-in-up services-title">
                         Nuestros <span className="text-gradient">Servicios</span>
                     </h1>
-                    <p
-                        style={{
-                            fontSize: '16px',
-                            color: 'var(--color-text-muted)',
-                            maxWidth: '600px',
-                            margin: '0 auto',
-                            lineHeight: 1.6,
-                        }}
-                    >
+                    <p className="services-subtitle">
                         Conoce nuestra amplia gama de servicios profesionales. Somos expertos
                         comprometidos con la excelencia.
                     </p>
                 </section>
 
                 {/* Service Cards Grid */}
-                <section style={{ padding: '40px 120px 60px' }}>
-                    <div
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                            gap: '28px',
-                            maxWidth: '1400px',
-                            margin: '0 auto',
-                        }}
-                    >
+                <section className="services-grid-section">
+                    <div className="services-grid">
                         {services.map((service, idx) => (
                             <div
                                 key={service.id}
-                                className="animate-fade-in-up"
+                                className="animate-fade-in-up service-card"
                                 style={{
-                                    backgroundColor: 'var(--color-dark-card)',
-                                    borderRadius: '20px',
-                                    padding: '35px',
-                                    boxShadow: '0 12px 35px rgba(0, 0, 0, 0.25)',
-                                    transition: 'all 0.3s ease',
-                                    cursor: 'pointer',
                                     animationDelay: `${idx * 0.1}s`,
                                     animationFillMode: 'both',
                                 }}
@@ -117,50 +92,18 @@ export default function ServicesPage() {
                                     e.currentTarget.style.boxShadow = '0 12px 35px rgba(0, 0, 0, 0.25)'
                                 }}
                             >
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
-                                    <div
-                                        style={{
-                                            width: '56px',
-                                            height: '56px',
-                                            background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%)',
-                                            borderRadius: '16px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            fontSize: '28px',
-                                        }}
-                                    >
+                                <div className="service-card-header">
+                                    <div className="service-icon">
                                         {service.emoji}
                                     </div>
-                                    <span
-                                        style={{
-                                            fontSize: '13px',
-                                            fontWeight: 600,
-                                            color: 'var(--color-accent-light)',
-                                            background: 'var(--color-accent-glow)',
-                                            padding: '6px 14px',
-                                            borderRadius: '20px',
-                                        }}
-                                    >
+                                    <span className="service-price">
                                         {service.price}
                                     </span>
                                 </div>
-                                <h3
-                                    style={{
-                                        fontSize: '20px',
-                                        fontWeight: 700,
-                                        marginBottom: '12px',
-                                    }}
-                                >
+                                <h3 className="service-card-title">
                                     {service.title}
                                 </h3>
-                                <p
-                                    style={{
-                                        fontSize: '15px',
-                                        color: 'var(--color-text-muted)',
-                                        lineHeight: 1.7,
-                                    }}
-                                >
+                                <p className="service-card-desc">
                                     {service.description}
                                 </p>
                             </div>
@@ -168,33 +111,14 @@ export default function ServicesPage() {
                     </div>
                 </section>
 
-                {/* More Info Section (tabbed like reference About page) */}
-                <section style={{ padding: '0 120px 30px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '40px' }}>
+                {/* More Info Section (tabbed) */}
+                <section className="services-tabs-section">
+                    <div className="services-tabs">
                         {Object.entries(sectionContent).map(([key, val]) => (
                             <button
                                 key={key}
                                 onClick={() => setActiveSection(key)}
-                                style={{
-                                    backgroundColor: activeSection === key
-                                        ? 'var(--color-accent)' : 'var(--color-dark-card)',
-                                    color: activeSection === key ? 'white' : 'var(--color-text-secondary)',
-                                    border: 'none',
-                                    padding: '12px 24px',
-                                    borderRadius: '25px',
-                                    fontSize: '14px',
-                                    fontWeight: 600,
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.5px',
-                                }}
-                                onMouseEnter={(e) => {
-                                    if (activeSection !== key) e.target.style.backgroundColor = 'var(--color-dark-card-hover)'
-                                }}
-                                onMouseLeave={(e) => {
-                                    if (activeSection !== key) e.target.style.backgroundColor = 'var(--color-dark-card)'
-                                }}
+                                className={`services-tab ${activeSection === key ? 'active' : ''}`}
                             >
                                 {val.title}
                             </button>
@@ -202,72 +126,30 @@ export default function ServicesPage() {
                     </div>
                 </section>
 
-                <section style={{ padding: '0 120px 80px' }}>
-                    <div
-                        style={{
-                            maxWidth: '900px',
-                            margin: '0 auto',
-                            backgroundColor: 'var(--color-dark-card)',
-                            borderRadius: '20px',
-                            padding: '50px',
-                            boxShadow: '0 15px 40px rgba(0, 0, 0, 0.3)',
-                        }}
-                    >
-                        <h2
-                            style={{
-                                fontSize: '28px',
-                                fontWeight: 700,
-                                marginBottom: '30px',
-                                borderBottom: '3px solid var(--color-accent)',
-                                paddingBottom: '15px',
-                            }}
-                        >
+                <section className="services-content-section">
+                    <div className="services-content-card">
+                        <h2 className="services-content-title">
                             {sectionContent[activeSection].title}
                         </h2>
-                        <div
-                            style={{
-                                fontSize: '16px',
-                                color: 'var(--color-text-secondary)',
-                                lineHeight: 1.8,
-                                whiteSpace: 'pre-line',
-                            }}
-                        >
+                        <div className="services-content-text">
                             {sectionContent[activeSection].content}
                         </div>
                     </div>
                 </section>
 
                 {/* CTA */}
-                <section style={{ textAlign: 'center', padding: '0 120px 60px' }}>
-                    <div
-                        style={{
-                            background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%)',
-                            borderRadius: '20px',
-                            padding: '40px',
-                            maxWidth: '600px',
-                            margin: '0 auto',
-                        }}
-                    >
+                <section className="services-cta-section">
+                    <div className="services-cta-card">
                         <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '15px' }}>
                             ¿Listo para Cotizar?
                         </h3>
                         <p style={{ fontSize: '16px', marginBottom: '25px', opacity: 0.9 }}>
                             Únete a cientos de clientes que ya confían en nosotros
                         </p>
-                        <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <div className="services-cta-buttons">
                             <button
                                 onClick={() => navigate('/#cotizar')}
-                                style={{
-                                    backgroundColor: 'white',
-                                    color: 'var(--color-accent)',
-                                    padding: '15px 30px',
-                                    border: 'none',
-                                    borderRadius: '30px',
-                                    fontSize: '16px',
-                                    fontWeight: 600,
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease',
-                                }}
+                                className="cta-primary-btn"
                                 onMouseEnter={(e) => {
                                     e.target.style.transform = 'translateY(-2px)'
                                     e.target.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)'
@@ -281,17 +163,7 @@ export default function ServicesPage() {
                             </button>
                             <button
                                 onClick={() => navigate('/galeria')}
-                                style={{
-                                    backgroundColor: 'transparent',
-                                    color: 'white',
-                                    padding: '15px 30px',
-                                    border: '2px solid white',
-                                    borderRadius: '30px',
-                                    fontSize: '16px',
-                                    fontWeight: 600,
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease',
-                                }}
+                                className="cta-secondary-btn"
                                 onMouseEnter={(e) => {
                                     e.target.style.backgroundColor = 'white'
                                     e.target.style.color = 'var(--color-accent)'
@@ -310,14 +182,270 @@ export default function ServicesPage() {
 
             {/* Responsive */}
             <style>{`
+                .services-header {
+                    padding: 60px 120px 30px;
+                    text-align: center;
+                }
+                .services-title {
+                    font-size: 36px;
+                    font-weight: 700;
+                    margin-bottom: 20px;
+                }
+                .services-subtitle {
+                    font-size: 16px;
+                    color: var(--color-text-muted);
+                    max-width: 600px;
+                    margin: 0 auto;
+                    line-height: 1.6;
+                }
+                .services-grid-section {
+                    padding: 40px 120px 60px;
+                }
+                .services-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 28px;
+                    max-width: 1400px;
+                    margin: 0 auto;
+                }
+                .service-card {
+                    background-color: var(--color-dark-card);
+                    border-radius: 20px;
+                    padding: 35px;
+                    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                }
+                .service-card-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    margin-bottom: 20px;
+                    gap: 12px;
+                }
+                .service-icon {
+                    width: 56px;
+                    height: 56px;
+                    min-width: 56px;
+                    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 28px;
+                }
+                .service-price {
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: var(--color-accent-light);
+                    background: var(--color-accent-glow);
+                    padding: 6px 14px;
+                    border-radius: 20px;
+                    white-space: nowrap;
+                }
+                .service-card-title {
+                    font-size: 20px;
+                    font-weight: 700;
+                    margin-bottom: 12px;
+                }
+                .service-card-desc {
+                    font-size: 15px;
+                    color: var(--color-text-muted);
+                    line-height: 1.7;
+                }
+                .services-tabs-section {
+                    padding: 0 120px 30px;
+                }
+                .services-tabs {
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    margin-bottom: 40px;
+                }
+                .services-tab {
+                    background-color: var(--color-dark-card);
+                    color: var(--color-text-secondary);
+                    border: none;
+                    padding: 12px 24px;
+                    border-radius: 25px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    font-family: var(--font-body);
+                }
+                .services-tab:hover {
+                    background-color: var(--color-dark-card-hover);
+                }
+                .services-tab.active {
+                    background-color: var(--color-accent);
+                    color: white;
+                }
+                .services-tab.active:hover {
+                    background-color: var(--color-accent);
+                }
+                .services-content-section {
+                    padding: 0 120px 80px;
+                }
+                .services-content-card {
+                    max-width: 900px;
+                    margin: 0 auto;
+                    background-color: var(--color-dark-card);
+                    border-radius: 20px;
+                    padding: 50px;
+                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+                }
+                .services-content-title {
+                    font-size: 28px;
+                    font-weight: 700;
+                    margin-bottom: 30px;
+                    border-bottom: 3px solid var(--color-accent);
+                    padding-bottom: 15px;
+                }
+                .services-content-text {
+                    font-size: 16px;
+                    color: var(--color-text-secondary);
+                    line-height: 1.8;
+                    white-space: pre-line;
+                }
+                .services-cta-section {
+                    text-align: center;
+                    padding: 0 120px 60px;
+                }
+                .services-cta-card {
+                    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+                    border-radius: 20px;
+                    padding: 40px;
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+                .services-cta-buttons {
+                    display: flex;
+                    gap: 20px;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                }
+                .cta-primary-btn {
+                    background-color: white;
+                    color: var(--color-accent);
+                    padding: 15px 30px;
+                    border: none;
+                    border-radius: 30px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    font-family: var(--font-body);
+                }
+                .cta-secondary-btn {
+                    background-color: transparent;
+                    color: white;
+                    padding: 15px 30px;
+                    border: 2px solid white;
+                    border-radius: 30px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    font-family: var(--font-body);
+                }
+
+                /* ===== TABLET ===== */
                 @media (max-width: 1366px) {
-                    section { padding-left: 80px !important; padding-right: 80px !important; }
+                    .services-header { padding: 50px 80px 25px; }
+                    .services-grid-section { padding: 30px 80px 50px; }
+                    .services-tabs-section { padding: 0 80px 25px; }
+                    .services-content-section { padding: 0 80px 60px; }
+                    .services-cta-section { padding: 0 80px 50px; }
                 }
+
                 @media (max-width: 1024px) {
-                    section { padding-left: 50px !important; padding-right: 50px !important; }
+                    .services-header { padding: 40px 50px 20px; }
+                    .services-title { font-size: 30px; }
+                    .services-grid-section { padding: 25px 50px 40px; }
+                    .services-grid {
+                        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                        gap: 20px;
+                    }
+                    .service-card { padding: 28px; }
+                    .services-tabs-section { padding: 0 50px 20px; }
+                    .services-content-section { padding: 0 50px 50px; }
+                    .services-content-card { padding: 35px; }
+                    .services-content-title { font-size: 24px; }
+                    .services-cta-section { padding: 0 50px 40px; }
                 }
+
+                /* ===== MOBILE ===== */
                 @media (max-width: 768px) {
-                    section { padding-left: 25px !important; padding-right: 25px !important; }
+                    .services-header { padding: 30px 25px 15px; }
+                    .services-title { font-size: 26px; }
+                    .services-subtitle { font-size: 14px; }
+                    .services-grid-section { padding: 20px 25px 30px; }
+                    .services-grid {
+                        grid-template-columns: 1fr;
+                        gap: 16px;
+                    }
+                    .service-card {
+                        padding: 24px;
+                        border-radius: 16px;
+                    }
+                    .service-icon {
+                        width: 48px;
+                        height: 48px;
+                        min-width: 48px;
+                        font-size: 24px;
+                        border-radius: 14px;
+                    }
+                    .service-price {
+                        font-size: 12px;
+                        padding: 5px 12px;
+                    }
+                    .service-card-title { font-size: 18px; }
+                    .service-card-desc { font-size: 14px; }
+                    .services-tabs-section { padding: 0 25px 15px; }
+                    .services-tabs {
+                        gap: 8px;
+                        margin-bottom: 25px;
+                    }
+                    .services-tab {
+                        padding: 10px 16px;
+                        font-size: 12px;
+                    }
+                    .services-content-section { padding: 0 25px 40px; }
+                    .services-content-card {
+                        padding: 25px 20px;
+                        border-radius: 16px;
+                    }
+                    .services-content-title { font-size: 20px; margin-bottom: 20px; }
+                    .services-content-text { font-size: 14px; }
+                    .services-cta-section { padding: 0 25px 40px; }
+                    .services-cta-card {
+                        padding: 30px 25px;
+                        border-radius: 16px;
+                    }
+                    .services-cta-card h3 { font-size: 20px !important; }
+                    .services-cta-card p { font-size: 14px !important; }
+                    .cta-primary-btn, .cta-secondary-btn {
+                        padding: 12px 24px;
+                        font-size: 14px;
+                        width: 100%;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .services-header { padding: 25px 20px 12px; }
+                    .services-title { font-size: 22px; }
+                    .services-grid-section { padding: 15px 20px 25px; }
+                    .service-card { padding: 20px; }
+                    .services-tabs-section { padding: 0 20px 12px; }
+                    .services-tab { padding: 8px 14px; font-size: 11px; }
+                    .services-content-section { padding: 0 20px 30px; }
+                    .services-content-card { padding: 20px 16px; }
+                    .services-cta-section { padding: 0 20px 30px; }
+                    .services-cta-card { padding: 25px 20px; }
                 }
             `}</style>
         </div>

@@ -172,6 +172,24 @@ export default function Footer() {
                 }
                 @media (max-width: 768px) {
                     footer > div { padding: 30px 25px !important; }
+                    footer > div > div:first-child {
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 30px !important;
+                    }
+                }
+                @media (max-width: 480px) {
+                    footer > div { padding: 25px 20px !important; }
+                    footer > div > div:first-child {
+                        grid-template-columns: 1fr !important;
+                        gap: 25px !important;
+                        text-align: center;
+                    }
+                    footer > div > div:first-child > div > div {
+                        align-items: center !important;
+                    }
+                    footer > div > div:first-child > div:last-child > div {
+                        justify-content: center !important;
+                    }
                 }
             `}</style>
         </footer>
