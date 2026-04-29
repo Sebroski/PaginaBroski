@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import imgInterior1 from '../assets/img/IMG_2959.jpeg'
+import imgCargo from '../assets/img/IMG_5451.jpeg'
+import imgCargoPersona from '../assets/img/IMG_5453.jpeg'
+import imgInterior2 from '../assets/img/c4e498f1-9b4d-42a7-a910-c797910c92b8.jpeg'
+
 const servicesOptions = [
     { value: '', label: 'Selecciona un servicio' },
     { value: 'servicio-1', label: 'Servicio Profesional 1' },
@@ -11,19 +16,52 @@ const servicesOptions = [
     { value: 'servicio-6', label: 'Servicio Profesional 6' },
 ]
 
-// Placeholder carousel images (gradient backgrounds)
-const carouselImages = [
-    'linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #8b5cf6 100%)',
-    'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 50%, #2563eb 100%)',
-    'linear-gradient(135deg, #2563eb 0%, #1e40af 50%, #8b5cf6 100%)',
-    'linear-gradient(135deg, #6d28d9 0%, #8b5cf6 50%, #3b82f6 100%)',
-    'linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #a78bfa 100%)',
+const reviews = [
+    {
+        name: 'Carlos Mendoza',
+        image: imgCargoPersona,
+        rating: 5,
+        text: '¡Excelente servicio! Me ayudaron con todo el proceso de envío de principio a fin. La atención fue de primera y mis paquetes llegaron en perfecto estado. Sin duda los volvería a elegir.',
+    },
+    {
+        name: 'María Fernández',
+        image: imgCargo,
+        rating: 4.5,
+        text: 'Muy profesionales y confiables. El seguimiento fue constante y siempre estuvieron disponibles para resolver mis dudas. La entrega fue puntual y todo llegó como esperaba.',
+    },
+    {
+        name: 'Andrés Gutiérrez',
+        image: imgInterior1,
+        rating: 4,
+        text: 'Buen servicio en general. Los vehículos están en excelentes condiciones y el equipo es muy amable. Los precios son competitivos comparados con otras opciones del mercado.',
+    },
+    {
+        name: 'Laura Rodríguez',
+        image: imgInterior2,
+        rating: 3.5,
+        text: 'Cumplieron con lo prometido. El proceso fue sencillo y la comunicación fue clara. Los recomiendo para quien necesite un servicio serio y responsable.',
+    },
 ]
+
+// Star renderer helper
+function StarRating({ rating }) {
+    const stars = []
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(rating)) {
+            stars.push(<span key={i} className="review-star full">★</span>)
+        } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+            stars.push(<span key={i} className="review-star half">★</span>)
+        } else {
+            stars.push(<span key={i} className="review-star empty">★</span>)
+        }
+    }
+    return <div className="review-stars">{stars}</div>
+}
 
 export default function HomePage() {
     const navigate = useNavigate()
     const [scrollY, setScrollY] = useState(0)
-    const [currentSlide, setCurrentSlide] = useState(0)
+    const [currentReview, setCurrentReview] = useState(0)
     const [formData, setFormData] = useState({
         nombre: '', correo: '', telefono: '', servicio: '', presupuesto: '',
     })
@@ -37,10 +75,13 @@ export default function HomePage() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % carouselImages.length)
-        }, 4000)
+            setCurrentReview((prev) => (prev + 1) % reviews.length)
+        }, 5000)
         return () => clearInterval(interval)
     }, [])
+
+    const nextReview = () => setCurrentReview((prev) => (prev + 1) % reviews.length)
+    const prevReview = () => setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length)
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -55,9 +96,6 @@ export default function HomePage() {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-
-    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % carouselImages.length)
-    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)
 
     return (
         <div style={{ position: 'relative', minHeight: '100vh' }}>
@@ -146,45 +184,61 @@ export default function HomePage() {
                     ))}
                 </section>
 
-                {/* ==================== CAROUSEL SECTION ==================== */}
-                <section className="carousel-section">
-                    <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative' }}>
-                        <div className="carousel-wrapper">
-                            <button className="carousel-btn prev" onClick={prevSlide}>
-                                ‹
-                            </button>
-                            <div
-                                className="carousel-track"
-                                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                            >
-                                {carouselImages.map((bg, i) => (
+                {/* ==================== RESEÑAS SECTION ==================== */}
+                <section className="reviews-section">
+                    <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+                            <h2 className="reviews-title">
+                                Lo Que Dicen Nuestros{' '}
+                                <span className="text-gradient">Clientes</span>
+                            </h2>
+                            <p className="reviews-subtitle">
+                                Descubre por qué somos la opción preferida de cientos de clientes satisfechos.
+                            </p>
+                        </div>
+                        <div className="review-carousel-wrapper">
+                            <button className="review-carousel-btn prev" onClick={prevReview}>‹</button>
+                            <div className="review-carousel-viewport">
+                                {reviews.map((review, i) => (
                                     <div
                                         key={i}
-                                        className="carousel-slide"
+                                        className={`review-card ${i === currentReview ? 'active' : ''}`}
                                         style={{
-                                            background: bg,
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            fontSize: '48px',
-                                            color: 'rgba(255,255,255,0.5)',
-                                            fontWeight: 700,
+                                            opacity: i === currentReview ? 1 : 0,
+                                            transform: i === currentReview ? 'scale(1) translateY(0)' : 'scale(0.95) translateY(20px)',
+                                            pointerEvents: i === currentReview ? 'auto' : 'none',
                                         }}
                                     >
-                                        Imagen {i + 1}
+                                        <div className="review-card-inner">
+                                            <div className="review-card-image">
+                                                <img src={review.image} alt={`Reseña de ${review.name}`} />
+                                                <div className="review-card-image-overlay" />
+                                            </div>
+                                            <div className="review-card-body">
+                                                <StarRating rating={review.rating} />
+                                                <p className="review-text">"{review.text}"</p>
+                                                <div className="review-author">
+                                                    <div className="review-author-avatar">
+                                                        {review.name.charAt(0)}
+                                                    </div>
+                                                    <div>
+                                                        <p className="review-author-name">{review.name}</p>
+                                                        <p className="review-author-label">Cliente verificado</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
-                            <button className="carousel-btn next" onClick={nextSlide}>
-                                ›
-                            </button>
+                            <button className="review-carousel-btn next" onClick={nextReview}>›</button>
                         </div>
-                        <div className="carousel-dots">
-                            {carouselImages.map((_, i) => (
+                        <div className="review-dots">
+                            {reviews.map((_, i) => (
                                 <button
                                     key={i}
-                                    className={`carousel-dot ${i === currentSlide ? 'active' : ''}`}
-                                    onClick={() => setCurrentSlide(i)}
+                                    className={`review-dot ${i === currentReview ? 'active' : ''}`}
+                                    onClick={() => setCurrentReview(i)}
                                 />
                             ))}
                         </div>
@@ -426,10 +480,178 @@ export default function HomePage() {
                 .action-btn {
                     min-width: 190px;
                 }
-                .carousel-section {
+                .reviews-section {
                     padding: 70px 120px 60px;
                     max-width: 2560px;
                     margin: 0 auto;
+                }
+                .reviews-title {
+                    font-size: 36px;
+                    font-weight: 700;
+                    margin-bottom: 18px;
+                }
+                .reviews-subtitle {
+                    font-size: 16px;
+                    color: var(--color-text-muted);
+                    max-width: 550px;
+                    margin: 0 auto;
+                }
+                .review-carousel-wrapper {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                }
+                .review-carousel-viewport {
+                    position: relative;
+                    width: 100%;
+                    min-height: 480px;
+                }
+                .review-carousel-btn {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(37, 99, 235, 0.7);
+                    color: #fff;
+                    border: none;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    font-size: 26px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    z-index: 10;
+                    font-family: var(--font-body);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .review-carousel-btn:hover {
+                    background: rgba(37, 99, 235, 0.95);
+                    transform: translateY(-50%) scale(1.1);
+                }
+                .review-carousel-btn.prev { left: -25px; }
+                .review-carousel-btn.next { right: -25px; }
+                .review-card {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    transition: opacity 0.5s ease, transform 0.5s ease;
+                }
+                .review-card-inner {
+                    background: var(--color-dark-card);
+                    border-radius: 20px;
+                    overflow: hidden;
+                    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+                    border: 1px solid var(--color-dark-border);
+                    display: flex;
+                    flex-direction: row;
+                }
+                .review-card-image {
+                    position: relative;
+                    flex: 0 0 380px;
+                    min-height: 380px;
+                    overflow: hidden;
+                }
+                .review-card-image img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                .review-card-image-overlay {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 50%;
+                    background: linear-gradient(to left, var(--color-dark-card) 0%, transparent 100%);
+                    pointer-events: none;
+                }
+                .review-card-body {
+                    flex: 1;
+                    padding: 40px 36px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+                .review-stars {
+                    display: flex;
+                    gap: 3px;
+                    margin-bottom: 18px;
+                }
+                .review-star {
+                    font-size: 22px;
+                    line-height: 1;
+                }
+                .review-star.full {
+                    color: #f59e0b;
+                }
+                .review-star.half {
+                    color: #f59e0b;
+                    opacity: 0.55;
+                }
+                .review-star.empty {
+                    color: var(--color-dark-border);
+                }
+                .review-text {
+                    font-size: 16px;
+                    line-height: 1.85;
+                    color: var(--color-text-secondary);
+                    margin-bottom: 28px;
+                    font-style: italic;
+                }
+                .review-author {
+                    display: flex;
+                    align-items: center;
+                    gap: 14px;
+                    padding-top: 20px;
+                    border-top: 1px solid var(--color-dark-border);
+                }
+                .review-author-avatar {
+                    width: 46px;
+                    height: 46px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    font-size: 20px;
+                    color: #fff;
+                    flex-shrink: 0;
+                }
+                .review-author-name {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: var(--color-text-primary);
+                }
+                .review-author-label {
+                    font-size: 12px;
+                    color: var(--color-accent-soft);
+                    margin-top: 3px;
+                }
+                .review-dots {
+                    display: flex;
+                    justify-content: center;
+                    gap: 14px;
+                    margin-top: 28px;
+                }
+                .review-dot {
+                    width: 14px;
+                    height: 14px;
+                    border-radius: 50%;
+                    border: none;
+                    background-color: rgba(37,99,235,0.25);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                .review-dot.active {
+                    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+                    transform: scale(1.25);
+                }
+                .review-dot:hover {
+                    background-color: var(--color-accent-light);
                 }
                 .gallery-cta-section {
                     text-align: center;
@@ -541,7 +763,7 @@ export default function HomePage() {
                     .content-section { padding: 80px 80px 60px; gap: 50px; }
                     .content-image { flex: 0 0 400px; height: 280px; }
                     .action-buttons-section { padding: 0 80px 50px; }
-                    .carousel-section { padding: 50px 80px 50px; }
+                    .reviews-section { padding: 50px 80px 50px; }
                     .gallery-cta-section { padding: 70px 80px 60px; }
                     .form-section { padding: 60px 80px; }
                 }
@@ -579,7 +801,7 @@ export default function HomePage() {
                         justify-content: center;
                     }
                     .action-btn { min-width: 160px; }
-                    .carousel-section { padding: 40px 50px 40px; }
+                    .reviews-section { padding: 40px 50px 40px; }
                     .gallery-cta-section { padding: 50px 50px 50px; }
                     .form-section { padding: 50px 50px; }
                     .form-title { font-size: 30px; }
@@ -632,7 +854,21 @@ export default function HomePage() {
                         min-width: calc(50% - 8px);
                         flex: 1 1 calc(50% - 8px);
                     }
-                    .carousel-section { padding: 30px 25px 30px; }
+                    .reviews-section { padding: 30px 25px 30px; }
+                    .reviews-title { font-size: 28px; }
+                    .review-card-inner { flex-direction: column; }
+                    .review-card-image { flex: none; height: 220px; min-height: auto; }
+                    .review-card-image-overlay {
+                        top: auto; bottom: 0; left: 0; right: 0;
+                        width: 100%; height: 50%;
+                        background: linear-gradient(to top, var(--color-dark-card) 0%, transparent 100%);
+                    }
+                    .review-carousel-viewport { min-height: 520px; }
+                    .review-carousel-btn { width: 38px; height: 38px; font-size: 18px; }
+                    .review-carousel-btn.prev { left: -5px; }
+                    .review-carousel-btn.next { right: -5px; }
+                    .review-dots { gap: 10px; margin-top: 20px; }
+                    .review-dot { width: 12px; height: 12px; }
                     .gallery-cta-section { padding: 40px 25px 40px; }
                     .gallery-cta-btn {
                         padding: 16px 40px !important;
@@ -679,7 +915,12 @@ export default function HomePage() {
                     .action-btn {
                         min-width: calc(50% - 6px);
                     }
-                    .carousel-section { padding: 25px 20px 25px; }
+                    .reviews-section { padding: 25px 20px 25px; }
+                    .reviews-title { font-size: 24px; }
+                    .review-card-body { padding: 18px 20px 22px; }
+                    .review-text { font-size: 14px; }
+                    .review-carousel-viewport { min-height: 480px; }
+                    .review-card-image { height: 180px; }
                     .gallery-cta-section { padding: 30px 20px 30px; }
                     .form-section { padding: 30px 20px; }
                     .form-card { padding: 20px 16px; }
