@@ -3,34 +3,24 @@ import { useNavigate } from 'react-router-dom'
 
 const services = [
     {
-        id: 1, emoji: '🔧', title: 'Servicio Profesional 1',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        price: 'Desde $50.000',
+        id: 1, emoji: '📦', title: 'Gestión de Compra en Origen',
+        description: 'Inspección técnica en Miami y verificación de títulos (Clean Title) antes del embarque.',
+        price: 'Consultar',
     },
     {
-        id: 2, emoji: '🎨', title: 'Servicio Profesional 2',
-        description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        price: 'Desde $80.000',
+        id: 2, emoji: '🚢', title: 'Consolidación espacio en Container',
+        description: 'Optimización de espacio para maximizar la inversión (ej: 1 bote + 2-3 jet skis + maquinaria menor).',
+        price: 'Consultar',
     },
     {
-        id: 3, emoji: '💡', title: 'Servicio Profesional 3',
-        description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        price: 'Desde $120.000',
+        id: 3, emoji: '📋', title: 'Inspección Pre-Importación',
+        description: 'Coordinación con el Club de Automóviles Antiguos de Chile para el informe técnico obligatorio.',
+        price: 'Consultar',
     },
     {
-        id: 4, emoji: '📐', title: 'Servicio Profesional 4',
-        description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        price: 'Desde $95.000',
-    },
-    {
-        id: 5, emoji: '🏗️', title: 'Servicio Profesional 5',
-        description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-        price: 'Desde $150.000',
-    },
-    {
-        id: 6, emoji: '✨', title: 'Servicio Profesional 6',
-        description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.',
-        price: 'Desde $75.000',
+        id: 4, emoji: '⚓', title: 'Tránsito Seguro y Desaduanaje',
+        description: 'Manejo de la Declaración de Ingreso (DIN) y pago de aranceles (6%) e IVA (19%) en puertos como San Antonio o Valparaíso.',
+        price: 'Consultar',
     },
 ]
 

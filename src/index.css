@@ -2,25 +2,25 @@
 
 /* ============= Custom Theme ============= */
 @theme {
-  --color-dark: #09090b;
-  --color-dark-soft: #0f0f12;
-  --color-dark-card: #141418;
-  --color-dark-card-hover: #1a1a20;
-  --color-dark-border: #27272a;
+  --color-dark: #2A2D43;
+  --color-dark-soft: #232537;
+  --color-dark-card: #414361;
+  --color-dark-card-hover: #4a4d6e;
+  --color-dark-border: #525475;
   --color-accent: #2563eb;
   --color-accent-light: #3b82f6;
   --color-accent-soft: #60a5fa;
   --color-accent-glow: rgba(37, 99, 235, 0.15);
   --color-accent-secondary: #8b5cf6;
   --color-accent-secondary-light: #a78bfa;
-  --color-text-primary: #fafafa;
-  --color-text-secondary: #d4d4d8;
-  --color-text-muted: #a1a1aa;
-  --color-text-dim: #71717a;
+  --color-text-primary: #DCE1E9;
+  --color-text-secondary: #c2c7cf;
+  --color-text-muted: #9ba0aa;
+  --color-text-dim: #7f838c;
   --color-success: #22c55e;
   --color-warning: #f59e0b;
-  --font-display: "Poppins", sans-serif;
-  --font-body: "Poppins", sans-serif;
+  --font-display: "Satoshi", sans-serif;
+  --font-body: "Satoshi", sans-serif;
 }
 
 /* ============= Base Styles ============= */

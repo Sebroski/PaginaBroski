@@ -8,12 +8,10 @@ import imgInterior2 from '../assets/img/c4e498f1-9b4d-42a7-a910-c797910c92b8.jpe
 
 const servicesOptions = [
     { value: '', label: 'Selecciona un servicio' },
-    { value: 'servicio-1', label: 'Servicio Profesional 1' },
-    { value: 'servicio-2', label: 'Servicio Profesional 2' },
-    { value: 'servicio-3', label: 'Servicio Profesional 3' },
-    { value: 'servicio-4', label: 'Servicio Profesional 4' },
-    { value: 'servicio-5', label: 'Servicio Profesional 5' },
-    { value: 'servicio-6', label: 'Servicio Profesional 6' },
+    { value: 'compra-origen', label: 'Gestión de Compra en Origen' },
+    { value: 'consolidacion', label: 'Consolidación espacio en Container' },
+    { value: 'inspeccion', label: 'Inspección Pre-Importación' },
+    { value: 'desaduanaje', label: 'Tránsito Seguro y Desaduanaje' },
 ]
 
 const reviews = [
@@ -87,10 +85,32 @@ export default function HomePage() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        setSubmitted(true)
-        setTimeout(() => setSubmitted(false), 4000)
+
+        // Usando Web3Forms para enviar el correo sin necesidad de un backend propio
+        const formDataObj = new FormData(e.target)
+        formDataObj.append("access_key", "4577688b-e87f-4e2d-ba1a-d4442c3c7ec8")
+        formDataObj.append("subject", `Nueva Cotización de ${formData.nombre}`)
+
+        try {
+            const res = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formDataObj
+            })
+            const data = await res.json()
+
+            if (data.success) {
+                setSubmitted(true)
+                setFormData({ nombre: '', correo: '', telefono: '', servicio: '', presupuesto: '' })
+                setTimeout(() => setSubmitted(false), 5000)
+            } else {
+                alert("Hubo un error al enviar el formulario.")
+            }
+        } catch (error) {
+            console.error("Error enviando el formulario:", error)
+            alert("Error de conexión.")
+        }
     }
 
     const scrollToTop = () => {

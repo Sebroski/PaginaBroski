@@ -24,9 +24,11 @@ export default function Navbar() {
         <header
             style={{
                 display: 'flex',
+                width: '100%',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '32px 120px',
+                paddingLeft: '40px',
                 backgroundColor: 'transparent',
                 position: 'relative',
                 zIndex: 100,
@@ -35,16 +37,28 @@ export default function Navbar() {
             }}
         >
             {/* Logo */}
-            <div
-                style={{
-                    fontSize: '28px',
-                    fontWeight: 700,
-                    color: 'var(--color-text-primary)',
-                    letterSpacing: '-0.5px',
-                }}
-            >
-                ⚡ ServiciosPro
-            </div>
+            <Link to="/" className="logo-container">
+                <img
+                    src="/logo.png"
+                    alt="Zenturion"
+                    className="logo-img"
+                    onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'block';
+                    }}
+                />
+                <span
+                    style={{
+                        display: 'none',
+                        fontSize: '28px',
+                        fontWeight: 700,
+                        color: 'var(--color-text-primary)',
+                        letterSpacing: '-0.5px',
+                    }}
+                >
+                    ZENTURION
+                </span>
+            </Link>
 
             {/* Desktop Nav */}
             <nav style={{ display: 'flex', alignItems: 'center', gap: '60px' }}>
@@ -73,6 +87,9 @@ export default function Navbar() {
                     COTIZAR
                 </button>
             </nav>
+
+            {/* Spacer to balance the logo flex and center the nav */}
+            <div className="nav-spacer"></div>
 
             {/* Mobile burger */}
             <button
@@ -146,9 +163,24 @@ export default function Navbar() {
             )}
 
             <style>{`
+                .logo-container {
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    z-index: 120;
+                    flex: 1;
+                }
+                .nav-spacer {
+                    flex: 1;
+                }
+                .logo-img {
+                    height: 55px;
+                    object-fit: contain;
+                }
                 @media (max-width: 768px) {
                     header {
                         padding: 18px 25px !important;
+                        padding-left: 15px !important;
                     }
                     .nav-desktop {
                         display: none !important;
@@ -159,15 +191,26 @@ export default function Navbar() {
                     .mobile-burger {
                         display: block !important;
                     }
+                    .logo-img {
+                        height: 38px;
+                    }
+                    .nav-spacer {
+                        display: none;
+                    }
                 }
                 @media (max-width: 1366px) {
                     header {
                         padding: 24px 80px !important;
+                        padding-left: 30px !important;
                     }
                 }
                 @media (max-width: 1024px) {
                     header {
                         padding: 20px 50px !important;
+                        padding-left: 20px !important;
+                    }
+                    .logo-img {
+                        height: 45px;
                     }
                 }
             `}</style>

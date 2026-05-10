@@ -1,33 +1,34 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const galleryItems = [
-    { id: 1, category: 'exterior', title: 'Proyecto Exterior 1', description: 'Vista panorámica del proyecto' },
-    { id: 2, category: 'interior', title: 'Diseño Interior 1', description: 'Espacio moderno y funcional' },
-    { id: 3, category: 'exterior', title: 'Proyecto Exterior 2', description: 'Fachada principal renovada' },
-    { id: 4, category: 'interior', title: 'Diseño Interior 2', description: 'Área de trabajo optimizada' },
-    { id: 5, category: 'detalle', title: 'Detalle Premium 1', description: 'Acabados de alta calidad' },
-    { id: 6, category: 'detalle', title: 'Detalle Premium 2', description: 'Materiales seleccionados' },
-    { id: 7, category: 'exterior', title: 'Proyecto Exterior 3', description: 'Lateral de la propiedad' },
-    { id: 8, category: 'interior', title: 'Diseño Interior 3', description: 'Iluminación natural' },
-    { id: 9, category: 'detalle', title: 'Detalle Premium 3', description: 'Texturas y acabados' },
-    { id: 10, category: 'exterior', title: 'Proyecto Exterior 4', description: 'Acceso principal' },
-    { id: 11, category: 'interior', title: 'Diseño Interior 4', description: 'Cocina integral' },
-    { id: 12, category: 'detalle', title: 'Detalle Premium 4', description: 'Instalaciones modernas' },
-]
+const imagesContext = import.meta.glob('../assets/img/**/*.{png,jpg,jpeg,svg,webp,avif}', { eager: true });
 
-const gradientMap = {
-    exterior: 'linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)',
-    interior: 'linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%)',
-    detalle: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
-}
+const galleryItems = Object.keys(imagesContext)
+    .filter(path => path.split('/').length > 4)
+    .map((path, idx) => {
+        const module = imagesContext[path];
+        const url = module.default || module;
+        const parts = path.split('/');
+        const category = parts[3].toLowerCase();
+        const filename = parts[parts.length - 1];
+        
+        return {
+            id: idx + 1,
+            category: category,
+            title: filename,
+            description: `Visualización de la categoría: ${category}`,
+            url: url
+        };
+    });
 
+const uniqueCategories = [...new Set(galleryItems.map(item => item.category))];
 const categories = [
     { id: 'todas', name: 'Todas' },
-    { id: 'exterior', name: 'Exterior' },
-    { id: 'interior', name: 'Interior' },
-    { id: 'detalle', name: 'Detalles' },
-]
+    ...uniqueCategories.map(cat => ({
+        id: cat,
+        name: cat.charAt(0).toUpperCase() + cat.slice(1)
+    }))
+];
 
 export default function GalleryPage() {
     const [activeCategory, setActiveCategory] = useState('todas')
@@ -115,17 +116,12 @@ export default function GalleryPage() {
                                             left: 0,
                                             width: '100%',
                                             height: '100%',
-                                            background: gradientMap[item.category],
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            fontSize: '48px',
-                                            color: 'rgba(255,255,255,0.3)',
+                                            backgroundImage: `url("${item.url}")`,
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center',
                                             transition: 'transform 0.3s ease',
                                         }}
-                                    >
-                                        📷
-                                    </div>
+                                    />
                                     <div
                                         style={{
                                             position: 'absolute',
@@ -192,11 +188,12 @@ export default function GalleryPage() {
                         <div
                             className="modal-image"
                             style={{
-                                background: gradientMap[modalItem.category],
+                                backgroundImage: `url("${modalItem.url}")`,
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
                             }}
-                        >
-                            📷
-                        </div>
+                        />
                         {/* Caption */}
                         <div className="modal-caption">
                             <h3 style={{ fontSize: '18px', fontWeight: 700, margin: '0 0 5px 0' }}>

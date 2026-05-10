@@ -39,7 +39,7 @@ export default function Footer() {
                                 marginBottom: '18px',
                             }}
                         >
-                            ⚡ ServiciosPro
+                            ZENTURION
                         </h3>
                         <p
                             style={{
@@ -48,9 +48,9 @@ export default function Footer() {
                                 lineHeight: 1.7,
                             }}
                         >
-                            Servicios profesionales de excelencia.
+                            Logistics Hub de excelencia.
                             Cotiza ahora y obtén el mejor presupuesto
-                            para tu proyecto.
+                            para tus necesidades logísticas.
                         </p>
                     </div>
 
@@ -88,27 +88,6 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Contact */}
-                    <div>
-                        <h4
-                            style={{
-                                fontSize: '14px',
-                                fontWeight: 600,
-                                color: 'var(--color-text-muted)',
-                                textTransform: 'uppercase',
-                                letterSpacing: '1px',
-                                marginBottom: '18px',
-                            }}
-                        >
-                            Contacto
-                        </h4>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: 'var(--color-text-dim)' }}>
-                            <span>📍 Dirección placeholder</span>
-                            <span>📞 +56 9 xxxx xxxx</span>
-                            <span>✉️ contacto@serviciospro.cl</span>
-                        </div>
-                    </div>
-
                     {/* Social */}
                     <div>
                         <h4
@@ -124,25 +103,48 @@ export default function Footer() {
                             Redes Sociales
                         </h4>
                         <div style={{ display: 'flex', gap: '12px' }}>
-                            {['📘', '📸', '📺', '💼'].map((icon, i) => (
-                                <span
-                                    key={i}
-                                    style={{
-                                        width: '40px',
-                                        height: '40px',
-                                        borderRadius: '50%',
-                                        background: 'var(--color-dark-card)',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        fontSize: '18px',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.3s ease',
-                                    }}
+                            <a
+                                href="https://www.instagram.com/zenturion.cr?igsh=MXJrbnhicjNyZHJ2Zw%3D%3D"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    width: '40px',
+                                    height: '40px',
+                                    borderRadius: '50%',
+                                    background: 'var(--color-dark-card)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '18px',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s ease',
+                                    textDecoration: 'none',
+                                    color: 'white'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)';
+                                    e.currentTarget.style.transform = 'translateY(-3px)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'var(--color-dark-card)';
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                }}
+                            >
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    width="20" height="20" 
+                                    viewBox="0 0 24 24" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    strokeWidth="2" 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round"
                                 >
-                                    {icon}
-                                </span>
-                            ))}
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -157,7 +159,7 @@ export default function Footer() {
                     }}
                 >
                     <p style={{ color: 'var(--color-text-dim)', fontSize: '12px' }}>
-                        © {new Date().getFullYear()} ServiciosPro. Todos los derechos reservados.
+                        © {new Date().getFullYear()} Zenturion. Todos los derechos reservados.
                     </p>
                 </div>
             </div>
