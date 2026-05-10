@@ -111,7 +111,7 @@ export default function Footer() {
                                     width: '40px',
                                     height: '40px',
                                     borderRadius: '50%',
-                                    background: 'var(--color-dark-card)',
+                                    background: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
@@ -122,11 +122,9 @@ export default function Footer() {
                                     color: 'white'
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)';
                                     e.currentTarget.style.transform = 'translateY(-3px)';
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = 'var(--color-dark-card)';
                                     e.currentTarget.style.transform = 'translateY(0)';
                                 }}
                             >

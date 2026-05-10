@@ -146,11 +146,6 @@ export default function HomePage() {
                             zIndex: 1,
                         }}
                     />
-                    {/* Large decorative element on the left */}
-                    <div className="hero-decorative">
-                        ⚡
-                    </div>
-
                     {/* Hero Content */}
                     <div className="hero-content animate-fade-in-up">
                         <h1 className="hero-title">
@@ -162,48 +157,6 @@ export default function HomePage() {
                         </button>
                     </div>
                 </section>
-
-                {/* ==================== CONTENT SECTION ==================== */}
-                <section className="content-section">
-                    {/* Image Container */}
-                    <div className="content-image">
-                        🏢
-                    </div>
-
-                    {/* Text Content */}
-                    <div className="content-text">
-                        <h2 className="content-title">
-                            ¡Nuestros Servicios Pueden Ser{' '}
-                            <span className="text-gradient">Tuyos!</span>
-                        </h2>
-                        <p className="content-paragraph">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat.
-                        </p>
-                        <p className="content-paragraph">
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim id est laborum.
-                        </p>
-                    </div>
-                </section>
-
-                {/* ==================== ACTION BUTTONS ==================== */}
-                <section className="action-buttons-section">
-                    {['UBICACIÓN', 'DETALLES', 'MÁS INFO', 'CONTACTO'].map((label) => (
-                        <button
-                            key={label}
-                            className="pill-btn action-btn"
-                            onClick={() => { }}
-                        >
-                            {label}
-                        </button>
-                    ))}
-                </section>
-
                 {/* ==================== RESEÑAS SECTION ==================== */}
                 <section className="reviews-section">
                     <div style={{ maxWidth: '900px', margin: '0 auto' }}>
@@ -410,8 +363,8 @@ export default function HomePage() {
                     height: 80vh;
                     display: flex;
                     align-items: center;
-                    justify-content: flex-end;
-                    padding-right: 150px;
+                    justify-content: center;
+                    padding: 0 20px;
                     overflow: hidden;
                     max-width: 2560px;
                     margin: 0 auto;
@@ -437,8 +390,8 @@ export default function HomePage() {
                     position: relative;
                     z-index: 10;
                     text-align: center;
-                    max-width: 550px;
-                    margin-right: 80px;
+                    max-width: 800px;
+                    margin: 0;
                 }
                 .hero-title {
                     font-size: 52px;
@@ -531,7 +484,7 @@ export default function HomePage() {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    background: rgba(37, 99, 235, 0.7);
+                    background: var(--color-accent);
                     color: #fff;
                     border: none;
                     width: 50px;
@@ -547,7 +500,7 @@ export default function HomePage() {
                     justify-content: center;
                 }
                 .review-carousel-btn:hover {
-                    background: rgba(37, 99, 235, 0.95);
+                    background: var(--color-accent-light);
                     transform: translateY(-50%) scale(1.1);
                 }
                 .review-carousel-btn.prev { left: -25px; }
@@ -662,7 +615,7 @@ export default function HomePage() {
                     height: 14px;
                     border-radius: 50%;
                     border: none;
-                    background-color: rgba(37,99,235,0.25);
+                    background-color: var(--color-accent-glow);
                     cursor: pointer;
                     transition: all 0.3s ease;
                 }

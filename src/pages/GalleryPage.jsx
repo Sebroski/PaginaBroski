@@ -133,12 +133,9 @@ export default function GalleryPage() {
                                             padding: '20px 15px 15px',
                                         }}
                                     >
-                                        <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 5px 0' }}>
-                                            {item.title}
+                                        <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0', textTransform: 'capitalize' }}>
+                                            {item.category}
                                         </h3>
-                                        <p style={{ fontSize: '14px', margin: 0, opacity: 0.9 }}>
-                                            {item.description}
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -196,12 +193,9 @@ export default function GalleryPage() {
                         />
                         {/* Caption */}
                         <div className="modal-caption">
-                            <h3 style={{ fontSize: '18px', fontWeight: 700, margin: '0 0 5px 0' }}>
-                                {modalItem.title}
+                            <h3 style={{ fontSize: '18px', fontWeight: 700, margin: '0', textTransform: 'capitalize' }}>
+                                {modalItem.category}
                             </h3>
-                            <p style={{ fontSize: '14px', margin: 0, opacity: 0.8 }}>
-                                {modalItem.description}
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -288,7 +282,7 @@ export default function GalleryPage() {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    background-color: rgba(37, 99, 235, 0.7);
+                    background-color: var(--color-accent);
                     color: #fff;
                     border: none;
                     width: 50px;
@@ -300,7 +294,7 @@ export default function GalleryPage() {
                     z-index: 10;
                 }
                 .modal-nav-btn:hover {
-                    background-color: rgba(37, 99, 235, 0.95);
+                    background-color: var(--color-accent-light);
                 }
                 .modal-prev-btn {
                     left: -60px;
